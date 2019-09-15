@@ -15,7 +15,11 @@
             "main": "apps/my-app/src/main.tsx",
             "polyfills": "apps/my-app/src/polyfills.ts",
             "tsConfig": "apps/my-app/tsconfig.app.json",
-            "assets": ["apps/my-app/src/favicon.ico", "apps/my-app/src/assets"],
+            "assets": [
+              "apps/my-app/src/favicon.ico",
+              "apps/my-app/src/manifest.json",
+              "apps/my-app/src/assets"
+            ],
             "styles": [],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/babel"
