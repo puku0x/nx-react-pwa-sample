@@ -1,0 +1,28 @@
+name: Node CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x]
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: npm ci
+      - name: Lint
+        run: npm run affected:lint -- --base=origin/master
+      - name: Test
+        run: npm run affected:test -- --base=origin/master --parallel
+      - name: E2E
+        run: npm run affected:test -- --base=origin/master --headless
+      - name: Build
+        run: npm run affected:build -- --base=origin/master
